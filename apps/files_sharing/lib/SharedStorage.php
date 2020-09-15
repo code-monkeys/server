@@ -127,7 +127,7 @@ class SharedStorage extends \OC\Files\Storage\Wrapper\Jail implements ISharedSto
 		$this->initialized = true;
 		try {
 			Filesystem::initMountPoints($this->superShare->getShareOwner());
-			$sourcePath = $this->ownerView->getPath($this->superShare->getNodeId());
+			$sourcePath = $this->ownerView->getPath($this->superShare->getNodeId(), $this->superShare->getNodeCacheEntry()->getStorageId());
 			[$this->nonMaskedStorage, $this->rootPath] = $this->ownerView->resolvePath($sourcePath);
 			$this->storage = new PermissionsMask([
 				'storage' => $this->nonMaskedStorage,
